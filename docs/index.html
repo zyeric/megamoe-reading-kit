@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeepSeek-V4 MegaMoE Reading Kit</title>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f5f6f4;
+  --paper: #ffffff;
+  --ink: #181b20;
+  --muted: #606873;
+  --line: #d9dee2;
+  --soft: #eef2f1;
+  --teal: #006b5f;
+  --blue: #365f91;
+  --rust: #8a4a15;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; color: var(--ink); background: var(--bg); line-height: 1.6; }
+a { color: var(--teal); text-decoration: none; }
+a:hover { text-decoration: underline; }
+header { background: var(--paper); border-bottom: 1px solid var(--line); }
+.wrap { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+.hero { min-height: 82vh; display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(380px, .98fr); gap: 34px; align-items: center; padding: 42px 0 34px; }
+.eyebrow { color: var(--rust); font-weight: 750; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; }
+h1 { font-size: clamp(36px, 6vw, 78px); line-height: .98; margin: 12px 0 18px; letter-spacing: 0; }
+.subtitle { font-size: 19px; max-width: 680px; color: #2e353d; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.button { display: inline-flex; align-items: center; min-height: 42px; padding: 9px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--ink); color: white; font-weight: 700; }
+.button.secondary { background: var(--paper); color: var(--ink); }
+.diagram { background: #fbfcfd; border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+svg { width: 100%; height: auto; display: block; }
+.box { fill: white; stroke: #bfc8ce; stroke-width: 1.5; rx: 8; }
+.box.teal { fill: #e6f3f1; stroke: var(--teal); }
+.box.blue { fill: #e9eef7; stroke: var(--blue); }
+.box.rust { fill: #f8eee6; stroke: var(--rust); }
+.label { font: 700 18px system-ui, sans-serif; fill: var(--ink); text-anchor: middle; }
+.small { font: 13px system-ui, sans-serif; fill: var(--muted); text-anchor: middle; }
+.arrow { fill: none; stroke: var(--blue); stroke-width: 2.4; }
+main { padding: 34px 0 70px; }
+section { margin: 18px 0; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 24px; }
+h2 { margin: 0 0 14px; font-size: 28px; letter-spacing: 0; }
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.item { border: 1px solid var(--line); border-radius: 8px; padding: 16px; background: #fbfcfd; }
+.item strong { display: block; margin-bottom: 5px; }
+.item span { display: block; color: var(--muted); font-size: 14px; }
+.table { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 760px; }
+th, td { border-bottom: 1px solid var(--line); padding: 10px; text-align: left; vertical-align: top; }
+th { background: var(--soft); }
+code { background: #eef1f4; padding: 1px 4px; border-radius: 4px; }
+.note { border-left: 4px solid var(--teal); padding: 10px 14px; background: #f2faf8; color: #263a37; }
+footer { color: var(--muted); font-size: 13px; padding: 28px 0 44px; }
+@media (max-width: 900px) {
+  .hero { min-height: auto; grid-template-columns: 1fr; padding-top: 28px; }
+  .grid { grid-template-columns: 1fr; }
+  h1 { font-size: 40px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap hero">
+    <div>
+      <div class="eyebrow">DeepSeek-V4 MegaMoE Reading Kit</div>
+      <h1>From MoE semantics to GPU-side execution protocol</h1>
+      <p class="subtitle">A structured reading surface for the public DeepGEMM
+      SM100 FP8/FP4 MegaMoE forward path: one-hour talk, top-down guide,
+      long-form source notes, and agent-friendly context indexes.</p>
+      <div class="actions">
+        <a class="button" href="training-systems/deepseek-v4-megamoe-notes.html#source-reading-guide">Start with the guide</a>
+        <a class="button secondary" href="training-systems/deepseek-v4-megamoe-talk.html">One-hour talk</a>
+        <a class="button secondary" href="training-systems/deepseek-v4-megamoe-notes.html">Long-form notes</a>
+      </div>
+    </div>
+    <div class="diagram" aria-label="MegaMoE reading layers diagram">
+      <svg viewBox="0 0 620 460" role="img">
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L9,3 z" fill="#365f91"></path>
+          </marker>
+        </defs>
+        <rect class="box teal" x="54" y="34" width="180" height="72"></rect>
+        <text class="label" x="144" y="65">MoE math</text>
+        <text class="small" x="144" y="88">top-k experts</text>
+        <rect class="box" x="386" y="34" width="180" height="72"></rect>
+        <text class="label" x="476" y="65">Distributed EP</text>
+        <text class="small" x="476" y="88">route ownership</text>
+        <path class="arrow" marker-end="url(#arrow)" d="M234,70 L384,70"></path>
+
+        <rect class="box blue" x="54" y="184" width="180" height="72"></rect>
+        <text class="label" x="144" y="215">Runtime protocol</text>
+        <text class="small" x="144" y="238">pool / ring / counters</text>
+        <rect class="box" x="386" y="184" width="180" height="72"></rect>
+        <text class="label" x="476" y="215">Scheduling</text>
+        <text class="small" x="476" y="238">waves / workers</text>
+        <path class="arrow" marker-end="url(#arrow)" d="M476,106 C476,146 144,146 144,182"></path>
+        <path class="arrow" marker-end="url(#arrow)" d="M234,220 L384,220"></path>
+
+        <rect class="box rust" x="54" y="334" width="180" height="72"></rect>
+        <text class="label" x="144" y="365">Stage notes</text>
+        <text class="small" x="144" y="388">dispatch / GEMM / combine</text>
+        <rect class="box" x="386" y="334" width="180" height="72"></rect>
+        <text class="label" x="476" y="365">Hardware</text>
+        <text class="small" x="476" y="388">TMA / TMEM / UMMA</text>
+        <path class="arrow" marker-end="url(#arrow)" d="M476,256 C476,296 144,296 144,332"></path>
+        <path class="arrow" marker-end="url(#arrow)" d="M234,370 L384,370"></path>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section>
+    <h2>Pick The Right Surface</h2>
+    <div class="grid">
+      <a class="item" href="training-systems/deepseek-v4-megamoe-notes.html#source-reading-guide">
+        <strong>Reading Guide</strong>
+        <span>Human-first path from math semantics to CUDA hardware mapping.</span>
+      </a>
+      <a class="item" href="training-systems/deepseek-v4-megamoe-notes.html#source-context-map">
+        <strong>Context Map</strong>
+        <span>Agent router: which file owns which question and how to update notes.</span>
+      </a>
+      <a class="item" href="training-systems/deepseek-v4-megamoe-notes.html">
+        <strong>Long-form HTML</strong>
+        <span>Generated snapshot with diagrams and collapsible source notes.</span>
+      </a>
+      <a class="item" href="training-systems/deepseek-v4-megamoe-talk.html">
+        <strong>One-hour Talk</strong>
+        <span>Presentation-oriented route through the same material.</span>
+      </a>
+      <a class="item" href="training-systems/deepseek-v4-megamoe-notes.html#source-claims-index">
+        <strong>Claims Index</strong>
+        <span>Code-backed facts, inference, paper-backed claims, and open questions.</span>
+      </a>
+      <a class="item" href="training-systems/deepseek-v4-megamoe-notes.html#source-glossary">
+        <strong>Glossary</strong>
+        <span>Layer-aware definitions for terms like wave, ring block, TMA, and TMEM.</span>
+      </a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Recommended Reading Order</h2>
+    <div class="table">
+      <table>
+        <thead><tr><th>Step</th><th>Read</th><th>Goal</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><a href="training-systems/deepseek-v4-megamoe-notes.html#source-reading-guide">Reading guide</a></td><td>Build the top-down mental model.</td></tr>
+          <tr><td>2</td><td><a href="training-systems/deepseek-v4-megamoe-notes.html#source-context-map">Context map</a></td><td>Know which source note owns each concept.</td></tr>
+          <tr><td>3</td><td><a href="training-systems/deepseek-v4-megamoe-notes.html#source-source-snapshot">Source snapshot</a></td><td>Understand source provenance and revalidation needs.</td></tr>
+          <tr><td>4</td><td><a href="training-systems/deepseek-v4-megamoe-notes.html#source-lowering-map">Lowering map</a></td><td>Map algorithm -&gt; EP -&gt; fused kernel -&gt; hardware.</td></tr>
+          <tr><td>5</td><td><a href="training-systems/deepseek-v4-megamoe-notes.html#source-runtime-protocol">Runtime protocol</a> and <a href="training-systems/deepseek-v4-megamoe-notes.html#source-scheduling">scheduling</a></td><td>Separate cross-stage state from scheduling policy.</td></tr>
+          <tr><td>6</td><td><a href="training-systems/deepseek-v4-megamoe-notes.html#source-dispatch">Dispatch</a>, <a href="training-systems/deepseek-v4-megamoe-notes.html#source-quantization">quantization</a>, <a href="training-systems/deepseek-v4-megamoe-notes.html#source-activation">activation</a>, <a href="training-systems/deepseek-v4-megamoe-notes.html#source-gemm">GEMM</a>, and <a href="training-systems/deepseek-v4-megamoe-notes.html#source-combine">combine</a> notes</td><td>Read concrete stage mechanics in execution order.</td></tr>
+          <tr><td>7</td><td><a href="training-systems/deepseek-v4-megamoe-notes.html#source-claims-index">Claims index</a></td><td>Check what is solid and what remains open.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Evidence Contract</h2>
+    <p class="note">The current notes describe the public DeepGEMM SM100 FP8/FP4
+    MegaMoE forward path. Training backward, private V4 production paths,
+    SM90 variants, and cross-node RDMA behavior remain separate revalidation
+    tasks unless the <a href="training-systems/deepseek-v4-megamoe-notes.html#source-claims-index">claims index</a>
+    says otherwise.</p>
+  </section>
+</main>
+
+<footer class="wrap">
+  Markdown files are the source of truth. Generated / hand-written HTML files
+  are reading surfaces for GitHub Pages.
+</footer>
+</body>
+</html>
