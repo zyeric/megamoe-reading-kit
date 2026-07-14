@@ -59,14 +59,14 @@ For future tasks about MegaMoE:
 | Which file owns a concept | this file | `deepseek-v4-megamoe-glossary.md` | owner note, layer |
 | Whether a claim is solid | `deepseek-v4-megamoe-claims-index.md` | owner note, source snapshot | evidence level |
 | Which code / paper version was used | `deepseek-v4-megamoe-source-snapshot.md` | owner note code anchors | snapshot, revalidation |
-| Dispatch / token movement | `deepseek-v4-megamoe-runtime-protocol.md` | `deepseek-v4-megamoe-dispatch.md`, `https://zyeric.github.io/gpu-hardware-notes/notes/cuda-symmetric-memory.md` | symmetric buffer, pool, ring, pull |
-| Wave scheduling | `deepseek-v4-megamoe-scheduling.md` | `deepseek-v4-megamoe-runtime-protocol.md`, `https://zyeric.github.io/gpu-hardware-notes/notes/cuda-kernel-patterns.md` | wave, pool block, ring block |
+| Dispatch / token movement | `deepseek-v4-megamoe-runtime-protocol.md` | `deepseek-v4-megamoe-dispatch.md`, `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-symmetric-memory` | symmetric buffer, pool, ring, pull |
+| Wave scheduling | `deepseek-v4-megamoe-scheduling.md` | `deepseek-v4-megamoe-runtime-protocol.md`, `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-kernel-patterns` | wave, pool block, ring block |
 | FP8 / FP4 quantization | `deepseek-v4-megamoe-quantization.md` | `deepseek-v4-megamoe-gemm.md`, `deepseek-v4-megamoe-activation.md` | E4M3, E2M1, UE8M0, SFA/SFB |
-| Linear1 / Linear2 GEMM | `deepseek-v4-megamoe-gemm.md` | `https://zyeric.github.io/gpu-hardware-notes/notes/gpu-memory-hierarchy.md`, `https://zyeric.github.io/gpu-hardware-notes/notes/cuda-kernel-patterns.md` | TMA, UMMA, TMEM, UTCCP |
+| Linear1 / Linear2 GEMM | `deepseek-v4-megamoe-gemm.md` | `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-gpu-memory-hierarchy`, `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-kernel-patterns` | TMA, UMMA, TMEM, UTCCP |
 | SwiGLU activation epilogue | `deepseek-v4-megamoe-activation.md` | `deepseek-v4-megamoe-quantization.md`, `deepseek-v4-megamoe-gemm.md` | gate/up, top-k weight, amax |
-| Combine / write-back | `deepseek-v4-megamoe-combine.md` | `deepseek-v4-megamoe-dispatch.md`, `https://zyeric.github.io/gpu-hardware-notes/notes/cuda-symmetric-memory.md` | TokenSrcMetadata, combine buffer, barrier |
-| CUDA execution vocabulary | `https://zyeric.github.io/gpu-hardware-notes/notes/gpu-execution-model.md` | `https://zyeric.github.io/gpu-hardware-notes/notes/cuda-kernel-patterns.md` | CTA, warp, warpgroup, SM |
-| GPU memory vocabulary | `https://zyeric.github.io/gpu-hardware-notes/notes/gpu-memory-hierarchy.md` | `https://zyeric.github.io/gpu-hardware-notes/notes/cuda-symmetric-memory.md` | registers, shared, L2, HBM, peer memory |
+| Combine / write-back | `deepseek-v4-megamoe-combine.md` | `deepseek-v4-megamoe-dispatch.md`, `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-symmetric-memory` | TokenSrcMetadata, combine buffer, barrier |
+| CUDA execution vocabulary | `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-gpu-execution-model` | `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-kernel-patterns` | CTA, warp, warpgroup, SM |
+| GPU memory vocabulary | `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-gpu-memory-hierarchy` | `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-symmetric-memory` | registers, shared, L2, HBM, peer memory |
 | Public writeup / GitHub Pages | `deepseek-v4-megamoe-index.html` | `deepseek-v4-megamoe-talk.html`, `deepseek-v4-megamoe-notes.html` | public entry, talk, source notes |
 
 ## Ownership Matrix

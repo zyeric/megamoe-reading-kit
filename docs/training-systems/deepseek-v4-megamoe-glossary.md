@@ -38,8 +38,8 @@ short definitions are intentionally compact; follow the owner note for details.
 | Term | Layer | Short meaning | Owner note | Common misread |
 |---|---|---|---|---|
 | symmetric buffer | runtime protocol | Same-layout rank-local buffers with peer-addressable views after rendezvous | `deepseek-v4-megamoe-runtime-protocol.md` | Not a remote procedure call system |
-| `sym_buffer.map` | runtime protocol / CUDA | Map a local symmetric-buffer pointer to a peer rank's corresponding address | `https://zyeric.github.io/gpu-hardware-notes/notes/cuda-symmetric-memory.md` | Not a special high-level collective |
-| rendezvous | runtime setup | Process-group step that exchanges enough state to form peer pointer tables | `https://zyeric.github.io/gpu-hardware-notes/notes/cuda-symmetric-memory.md` | Not the hot-path per-token communication itself |
+| `sym_buffer.map` | runtime protocol / CUDA | Map a local symmetric-buffer pointer to a peer rank's corresponding address | `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-symmetric-memory` | Not a special high-level collective |
+| rendezvous | runtime setup | Process-group step that exchanges enough state to form peer pointer tables | `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-symmetric-memory` | Not the hot-path per-token communication itself |
 | workspace | runtime protocol | Kernel-owned state area: counters, offsets, metadata, barriers | `deepseek-v4-megamoe-runtime-protocol.md` | Not a single tensor with one semantic meaning |
 | pool | runtime protocol | Full logical sequence of routed token occurrences for local expert work | `deepseek-v4-megamoe-runtime-protocol.md` | Not physical storage |
 | pool token | runtime protocol | One logical routed token occurrence in the expert-token pool | `deepseek-v4-megamoe-runtime-protocol.md` | Not necessarily one original model token |
@@ -60,19 +60,19 @@ short definitions are intentionally compact; follow the owner note for details.
 | Term | Layer | Short meaning | Owner note | Common misread |
 |---|---|---|---|---|
 | wave | scheduling | High-level work window over a subset of expert blocks | `deepseek-v4-megamoe-scheduling.md` | Not warp, ring block, or GEMM tile |
-| persistent kernel | kernel pattern | Long-lived kernel with resident workers that traverse work dynamically | `https://zyeric.github.io/gpu-hardware-notes/notes/cuda-kernel-patterns.md` | Not a guarantee that no thread ever waits |
+| persistent kernel | kernel pattern | Long-lived kernel with resident workers that traverse work dynamically | `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-kernel-patterns` | Not a guarantee that no thread ever waits |
 | persistent worker | scheduling | Resident CTA / warp role polling and executing assigned work | `deepseek-v4-megamoe-scheduling.md` | Not a CPU thread |
-| spin-wait | kernel pattern | Device-side polling on counters / flags | `https://zyeric.github.io/gpu-hardware-notes/notes/cuda-kernel-patterns.md` | Not host-side sleep or heartbeat |
+| spin-wait | kernel pattern | Device-side polling on counters / flags | `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-kernel-patterns` | Not host-side sleep or heartbeat |
 | `BLOCK_M` | GEMM shape | Number of token rows in one M block | `deepseek-v4-megamoe-gemm.md` | Not the full expert token count |
 | `BLOCK_N` | GEMM shape | Number of output-channel columns in one N block | `deepseek-v4-megamoe-gemm.md` | Not a rank count |
 | `BLOCK_K` | GEMM shape | Reduction-dimension tile size | `deepseek-v4-megamoe-gemm.md` | Not top-k |
 | GEMM tile | compute tiling | One M x N output tile, reduced over K tiles | `deepseek-v4-megamoe-gemm.md` | Not the same as communication chunk |
 | K-tile stage | GEMM pipeline | Shared-memory pipeline stage over the reduction dimension | `deepseek-v4-megamoe-gemm.md` | Not MoE pipeline stage |
-| CTA | CUDA programming model | Cooperative Thread Array, the CUDA block abstraction | `https://zyeric.github.io/gpu-hardware-notes/notes/gpu-execution-model.md` | Not one physical SM |
-| warp | CUDA programming model | Group of 32 CUDA threads scheduled together | `https://zyeric.github.io/gpu-hardware-notes/notes/gpu-execution-model.md` | Not an SM or a wave |
-| warpgroup | CUDA programming model | Group of warps cooperating for tensor-core operations | `https://zyeric.github.io/gpu-hardware-notes/notes/gpu-execution-model.md` | Not a model expert group |
-| SM | hardware | Streaming Multiprocessor executing CTAs / warps | `https://zyeric.github.io/gpu-hardware-notes/notes/gpu-execution-model.md` | Not determined by `sm90` / `sm100` number |
-| SM90 / SM100 | ISA / architecture | NVIDIA architecture generation targets for Hopper / Blackwell | `https://zyeric.github.io/gpu-hardware-notes/notes/gpu-execution-model.md` | Not the number of SMs |
+| CTA | CUDA programming model | Cooperative Thread Array, the CUDA block abstraction | `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-gpu-execution-model` | Not one physical SM |
+| warp | CUDA programming model | Group of 32 CUDA threads scheduled together | `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-gpu-execution-model` | Not an SM or a wave |
+| warpgroup | CUDA programming model | Group of warps cooperating for tensor-core operations | `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-gpu-execution-model` | Not a model expert group |
+| SM | hardware | Streaming Multiprocessor executing CTAs / warps | `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-gpu-execution-model` | Not determined by `sm90` / `sm100` number |
+| SM90 / SM100 | ISA / architecture | NVIDIA architecture generation targets for Hopper / Blackwell | `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-gpu-execution-model` | Not the number of SMs |
 
 ## Numerics And Hardware Terms
 
@@ -85,13 +85,13 @@ short definitions are intentionally compact; follow the owner note for details.
 | SFA | numerics / GEMM | Activation scale-factor metadata consumed by block-scaled UMMA | `deepseek-v4-megamoe-gemm.md` | Not loaded exactly like large payload tiles |
 | SFB | numerics / GEMM | Weight scale-factor metadata consumed by block-scaled UMMA | `deepseek-v4-megamoe-gemm.md` | Not the weight payload |
 | UTCCP | Blackwell / GEMM | Instruction path used to move scale-factor metadata into TMEM for UMMA | `deepseek-v4-megamoe-gemm.md` | Not the general payload load path |
-| TMA | CUDA / hardware | Tensor Memory Accelerator for asynchronous tensor loads / stores | `https://zyeric.github.io/gpu-hardware-notes/notes/gpu-memory-hierarchy.md` | Not TMEM |
-| TMEM | Blackwell / hardware | Tensor memory used by UMMA accumulators and epilogues | `https://zyeric.github.io/gpu-hardware-notes/notes/gpu-memory-hierarchy.md` | Not global memory and not TMA |
-| MMA / UMMA | tensor core | Matrix multiply-accumulate instruction family; UMMA is Blackwell-style | `https://zyeric.github.io/gpu-hardware-notes/notes/cuda-kernel-patterns.md` | Not CUDA-core scalar math |
-| shared memory | GPU memory | Explicit CTA-local scratchpad, often sharing on-chip capacity with L1 | `https://zyeric.github.io/gpu-hardware-notes/notes/gpu-memory-hierarchy.md` | Not a global cache |
-| L2 cache | GPU memory | GPU-wide cache and coherence/performance layer | `https://zyeric.github.io/gpu-hardware-notes/notes/gpu-memory-hierarchy.md` | Not Linear2 when written as `l2_acts` |
-| HBM | GPU memory | High-bandwidth device memory for large tensors | `https://zyeric.github.io/gpu-hardware-notes/notes/gpu-memory-hierarchy.md` | Not on-chip scratchpad |
-| NVLink / NVSwitch | interconnect | Intra-node / rack GPU peer transport fabric | `https://zyeric.github.io/gpu-hardware-notes/notes/nvidia-gpu-generations.md` | Not equivalent to cross-node RDMA |
+| TMA | CUDA / hardware | Tensor Memory Accelerator for asynchronous tensor loads / stores | `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-gpu-memory-hierarchy` | Not TMEM |
+| TMEM | Blackwell / hardware | Tensor memory used by UMMA accumulators and epilogues | `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-gpu-memory-hierarchy` | Not global memory and not TMA |
+| MMA / UMMA | tensor core | Matrix multiply-accumulate instruction family; UMMA is Blackwell-style | `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-kernel-patterns` | Not CUDA-core scalar math |
+| shared memory | GPU memory | Explicit CTA-local scratchpad, often sharing on-chip capacity with L1 | `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-gpu-memory-hierarchy` | Not a global cache |
+| L2 cache | GPU memory | GPU-wide cache and coherence/performance layer | `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-gpu-memory-hierarchy` | Not Linear2 when written as `l2_acts` |
+| HBM | GPU memory | High-bandwidth device memory for large tensors | `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-gpu-memory-hierarchy` | Not on-chip scratchpad |
+| NVLink / NVSwitch | interconnect | Intra-node / rack GPU peer transport fabric | `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-nvidia-gpu-generations` | Not equivalent to cross-node RDMA |
 
 ## Naming Collision Warnings
 

@@ -25,7 +25,7 @@ Related notes:
   `x` / `x_sf`, route-weight dtype, and scale-factor payloads.
 - [`deepseek-v4-megamoe-gemm.md`](deepseek-v4-megamoe-gemm.md) - how ready L1
   ring slots become Linear1 GEMM inputs.
-- [`gpu-hardware-notes/notes/cuda-symmetric-memory.md`](https://zyeric.github.io/gpu-hardware-notes/notes/cuda-symmetric-memory.md)
+- [`gpu-hardware-notes/notes/cuda-symmetric-memory.md`](https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-symmetric-memory)
   - peer-addressability background.
 
 Scope:
@@ -44,7 +44,7 @@ concepts now live in more specific notes:
 
 | Old topic in dispatch note | New owner |
 |---|---|
-| symmetric-memory setup and transport caveats | [`deepseek-v4-megamoe-runtime-protocol.md`](deepseek-v4-megamoe-runtime-protocol.md), [`gpu-hardware-notes/notes/cuda-symmetric-memory.md`](https://zyeric.github.io/gpu-hardware-notes/notes/cuda-symmetric-memory.md) |
+| symmetric-memory setup and transport caveats | [`deepseek-v4-megamoe-runtime-protocol.md`](deepseek-v4-megamoe-runtime-protocol.md), [`gpu-hardware-notes/notes/cuda-symmetric-memory.md`](https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-symmetric-memory) |
 | tensor / buffer glossary | [`deepseek-v4-megamoe-runtime-protocol.md`](deepseek-v4-megamoe-runtime-protocol.md) |
 | pool, ring slots, generation counters | [`deepseek-v4-megamoe-runtime-protocol.md`](deepseek-v4-megamoe-runtime-protocol.md) |
 | wave scheduling examples | [`deepseek-v4-megamoe-scheduling.md`](deepseek-v4-megamoe-scheduling.md) |

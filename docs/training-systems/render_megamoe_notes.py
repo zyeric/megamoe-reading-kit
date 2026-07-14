@@ -19,7 +19,7 @@ from typing import Iterable
 BASE = Path(__file__).resolve().parent
 REPO_READING = BASE.parent
 OUTPUT = BASE / "deepseek-v4-megamoe-notes.html"
-HARDWARE_SITE = "https://zyeric.github.io/gpu-hardware-notes/notes/"
+HARDWARE_SITE = "https://zyeric.github.io/gpu-hardware-notes/notes.html#source-"
 
 
 @dataclass(frozen=True)
@@ -126,22 +126,22 @@ CORE_DOCS = [
 HARDWARE_DOCS = [
     ExternalDoc(
         "Symmetric Memory",
-        HARDWARE_SITE + "cuda-symmetric-memory.md",
+        HARDWARE_SITE + "cuda-symmetric-memory",
         "Peer addressability, rendezvous, hot-path pointer mapping, and caveats.",
     ),
     ExternalDoc(
         "GPU Execution Model",
-        HARDWARE_SITE + "gpu-execution-model.md",
+        HARDWARE_SITE + "gpu-execution-model",
         "CTA / warp / SM vocabulary, persistent kernels, PTX, and SASS.",
     ),
     ExternalDoc(
         "GPU Memory",
-        HARDWARE_SITE + "gpu-memory-hierarchy.md",
+        HARDWARE_SITE + "gpu-memory-hierarchy",
         "Registers, shared memory, TMEM, L2, HBM, TMA, and locality.",
     ),
     ExternalDoc(
         "Kernel Patterns",
-        HARDWARE_SITE + "cuda-kernel-patterns.md",
+        HARDWARE_SITE + "cuda-kernel-patterns",
         "Tiling, ring buffers, counters, wave scheduling, and fused pipelines.",
     ),
 ]

@@ -26,7 +26,7 @@ Related notes:
   wave / pool-block / ring-block scheduling.
 - [`deepseek-v4-megamoe-quantization.md`](deepseek-v4-megamoe-quantization.md)
   - FP8/FP4 payloads, UE8M0 scale factors, and L1 gate/up weight interleave.
-- [`gpu-hardware-notes/notes/cuda-kernel-patterns.md`](https://zyeric.github.io/gpu-hardware-notes/notes/cuda-kernel-patterns.md)
+- [`gpu-hardware-notes/notes/cuda-kernel-patterns.md`](https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-kernel-patterns)
   - epilogue, TMA, UMMA, TMEM, ring-buffer, and producer-consumer patterns.
 
 Scope:
@@ -285,8 +285,8 @@ storage and synchronization are different:
 | activation epilogue -> Linear2 | FP8 `l2_acts` + UE8M0 `l2_acts_sf` | global-memory ring slot | `l2_full_count` |
 
 Execution-resource note:
-[`gpu-hardware-notes/notes/cuda-kernel-patterns.md`](https://zyeric.github.io/gpu-hardware-notes/notes/cuda-kernel-patterns.md)
-and [`gpu-hardware-notes/notes/gpu-execution-model.md`](https://zyeric.github.io/gpu-hardware-notes/notes/gpu-execution-model.md)
+[`gpu-hardware-notes/notes/cuda-kernel-patterns.md`](https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-kernel-patterns)
+and [`gpu-hardware-notes/notes/gpu-execution-model.md`](https://zyeric.github.io/gpu-hardware-notes/notes.html#source-gpu-execution-model)
 track the hardware background. In this epilogue, UMMA / Tensor Cores produce
 the FP32 accumulator tile. The epilogue then uses SM100 TMEM load instructions
 to move accumulator values into registers. The following BF16 rounding, clamp,

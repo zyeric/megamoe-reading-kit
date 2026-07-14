@@ -27,7 +27,7 @@ Related notes:
   Linear1 / Linear2 GEMM body and Linear2 FP32 TMEM accumulator production.
 - [`deepseek-v4-megamoe-activation.md`](deepseek-v4-megamoe-activation.md) -
   top-k weight is applied before Linear2 in the public FP8/FP4 path.
-- [`gpu-hardware-notes/notes/cuda-symmetric-memory.md`](https://zyeric.github.io/gpu-hardware-notes/notes/cuda-symmetric-memory.md)
+- [`gpu-hardware-notes/notes/cuda-symmetric-memory.md`](https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-symmetric-memory)
   - peer-addressability and symmetric-memory caveats.
 
 Scope:

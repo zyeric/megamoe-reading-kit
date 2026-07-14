@@ -27,7 +27,7 @@ Related notes:
   - FP8/FP4 payloads, SFA/SFB layouts, and block-scaled matmul semantics.
 - [`deepseek-v4-megamoe-activation.md`](deepseek-v4-megamoe-activation.md) -
   Linear1 epilogue, SwiGLU, `l2_acts`, and TMEM accumulator handoff.
-- [`gpu-hardware-notes/notes/cuda-kernel-patterns.md`](https://zyeric.github.io/gpu-hardware-notes/notes/cuda-kernel-patterns.md)
+- [`gpu-hardware-notes/notes/cuda-kernel-patterns.md`](https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-kernel-patterns)
   - TMA, UMMA, TMEM, epilogue, and producer-consumer pipeline patterns.
 
 Scope:

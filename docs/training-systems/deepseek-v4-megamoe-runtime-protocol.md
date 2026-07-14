@@ -27,7 +27,7 @@ Related notes:
   Linear1 epilogue and L2 ring-buffer publish.
 - [`deepseek-v4-megamoe-combine.md`](deepseek-v4-megamoe-combine.md) -
   Linear2 route write-back and final local combine.
-- [`gpu-hardware-notes/notes/cuda-symmetric-memory.md`](https://zyeric.github.io/gpu-hardware-notes/notes/cuda-symmetric-memory.md)
+- [`gpu-hardware-notes/notes/cuda-symmetric-memory.md`](https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-symmetric-memory)
   - symmetric-memory addressability and transport caveats.
 
 Scope:
@@ -104,7 +104,7 @@ rank-local symmetric allocation
 ```
 
 Use the hardware note for the lower-level addressability model:
-[`gpu-hardware-notes/notes/cuda-symmetric-memory.md`](https://zyeric.github.io/gpu-hardware-notes/notes/cuda-symmetric-memory.md).
+[`gpu-hardware-notes/notes/cuda-symmetric-memory.md`](https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-symmetric-memory).
 
 Important caveat:
 
@@ -275,7 +275,7 @@ operations.
   [`deepseek-v4-megamoe-gemm.md`](deepseek-v4-megamoe-gemm.md) and
   [`deepseek-v4-megamoe-quantization.md`](deepseek-v4-megamoe-quantization.md)
 - Symmetric-memory implementation details:
-  [`gpu-hardware-notes/notes/cuda-symmetric-memory.md`](https://zyeric.github.io/gpu-hardware-notes/notes/cuda-symmetric-memory.md)
+  [`gpu-hardware-notes/notes/cuda-symmetric-memory.md`](https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-symmetric-memory)
 
 ## Reading Checklist
 

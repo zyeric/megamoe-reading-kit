@@ -19,7 +19,7 @@ Primary source:
 
 - DeepSeek-V4 technical report: [`../sources/2606.19348v1-deepseek-v4.pdf`](../sources/2606.19348v1-deepseek-v4.pdf)
 - Cross-area entrypoint: [`../model-architecture/deepseek-v4.md`](../model-architecture/deepseek-v4.md)
-- Hardware background: [`gpu-hardware-notes/notes/nvidia-gpu-generations.md`](https://zyeric.github.io/gpu-hardware-notes/notes/nvidia-gpu-generations.md)
+- Hardware background: [`gpu-hardware-notes/notes/nvidia-gpu-generations.md`](https://zyeric.github.io/gpu-hardware-notes/notes.html#source-nvidia-gpu-generations)
 - Runtime protocol notes:
   [`deepseek-v4-megamoe-runtime-protocol.md`](deepseek-v4-megamoe-runtime-protocol.md)
 - Dispatch notes: [`deepseek-v4-megamoe-dispatch.md`](deepseek-v4-megamoe-dispatch.md)

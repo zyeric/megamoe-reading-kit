@@ -24,7 +24,7 @@ Related notes:
   token/SF pull into local L1 ring slots.
 - [`deepseek-v4-megamoe-scheduling.md`](deepseek-v4-megamoe-scheduling.md) -
   wave / pool-block / ring-block scheduling.
-- [`gpu-hardware-notes/notes/cuda-kernel-patterns.md`](https://zyeric.github.io/gpu-hardware-notes/notes/cuda-kernel-patterns.md)
+- [`gpu-hardware-notes/notes/cuda-kernel-patterns.md`](https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-kernel-patterns)
   - TMA, UMMA, TMEM, persistent kernels, and GEMM pipeline stages.
 
 External reference:

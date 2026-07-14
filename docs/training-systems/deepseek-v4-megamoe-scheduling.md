@@ -23,10 +23,10 @@ Related notes:
 - [`deepseek-v4-megamoe-dispatch.md`](deepseek-v4-megamoe-dispatch.md) -
   metadata push, deterministic source-rank order, and token pull into L1 ring
   slots.
-- [`gpu-hardware-notes/notes/cuda-kernel-patterns.md`](https://zyeric.github.io/gpu-hardware-notes/notes/cuda-kernel-patterns.md)
+- [`gpu-hardware-notes/notes/cuda-kernel-patterns.md`](https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-kernel-patterns)
   - generic persistent-kernel, wave-scheduling, ring-buffer, and spin-wait
   patterns.
-- [`gpu-hardware-notes/notes/cuda-symmetric-memory.md`](https://zyeric.github.io/gpu-hardware-notes/notes/cuda-symmetric-memory.md)
+- [`gpu-hardware-notes/notes/cuda-symmetric-memory.md`](https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-symmetric-memory)
   - peer-addressability and symmetric-memory runtime model.
 
 Scope:
