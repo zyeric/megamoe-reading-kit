@@ -67,6 +67,8 @@ Related notes:
 | CTA, warp, and SM live at different layers: programming abstraction, scheduling unit, and physical execution block. | GPU execution model note. | High | hardware |
 | TMA and TMEM are different concepts: TMA moves tensor data, TMEM holds tensor-core accumulator state on Blackwell. | GPU memory hierarchy and kernel pattern notes. | High | hardware |
 | L1/shared memory, L2 cache, and HBM have different scope and management models. | GPU memory hierarchy note. | High | hardware |
+| Rubin public material documents inline TMA descriptor update, doubled K-dimension processing per clock, counted writes, fine-grained dependent triggering, HBM4, and NVLink 6. | NVIDIA Rubin architecture/platform overviews, summarized in GPU generation notes and the Rubin projection. | High | hardware / Rubin projection |
+| With `T` tokens per DP replica, top-k `k`, and `E` logical experts, balanced mean routes per expert are `T*k/E`; changing EP degree alone does not change that mean. | Route-count identity in the Rubin projection. | High | distributed EP / Rubin projection |
 
 ## Inferences To Revalidate
 
@@ -76,6 +78,9 @@ Related notes:
 | Pathological route imbalance mainly hurts tail waves / ring occupancy rather than changing correctness. | Scheduling model and capacity discussion imply this. | Medium | Test with synthetic imbalanced `topk_idx` once GPU access is available. |
 | Backward could conceptually reuse some forward protocol objects but would need separate dX / dW reduction design. | MoE backward structure and missing public code. | Medium | Revisit if public backward kernels appear. |
 | Some UTCCP / TMEM details are Blackwell-specific and should not be generalized to Hopper. | SM100 implementation and Blackwell tensor-memory terminology. | Medium | Compare SM90 public path or CUTLASS/CuTe docs if available. |
+| Rubin inline TMA descriptor update could reduce setup overhead for same-layout/different-base expert tensors. | Current path repeatedly visits expert/peer tensors with stable logical layouts; Rubin exposes inline pointer/stride overrides. | Medium | Implement and compare descriptor/setup instruction count and end-to-end wave time. |
+| Counted writes could replace the whole-phase combine barrier with token/block readiness while retaining fixed local top-k-slot reduction order. | Current remote writes use disjoint slots; completion and floating-point reduction order can remain separate contracts. | Medium | Prototype generations/counts/ordering and compare balanced and skewed traces. |
+| At fixed route count `R=T*k`, rank route-load CV grows as `sqrt((P-1)/R)` under a uniform iid approximation. | Binomial rank-allocation model; real router choices and placement violate iid. | Medium | Measure expert/rank distributions on real traces with the full DP/EP/batch envelope. |
 
 ## Open Questions
 
@@ -87,6 +92,8 @@ Related notes:
 | What exact source block implements the deterministic source-rank interleaving order? | Would tighten dispatch determinism evidence. | dispatch |
 | Which PTX / SASS instructions implement the low-level UMMA / UTCCP / TMEM details? | Needed for architecture-portability claims. | GEMM / hardware |
 | Does symmetric memory in this stack support only one NVLink domain, or can it be composed with other communication layers? | Determines relationship to DeepEP / cross-node EP. | symmetric memory |
+| What Rubin shared-memory, TMEM, occupancy, instruction-shape, and latency details apply to a real MegaMoE port? | Public architecture material is not yet a kernel tuning guide or implementation. | Rubin projection / hardware |
+| Which readiness granularity minimizes counted-write overhead without recreating a phase barrier or counter hotspot? | Determines whether early combine is a practical win. | runtime protocol / combine |
 
 ## How To Add A New Claim
 

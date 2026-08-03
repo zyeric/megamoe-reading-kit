@@ -68,6 +68,12 @@ GUIDE_DOCS = [
         "Source Snapshot",
         "Paper, repo, file, and revalidation provenance for the notes.",
     ),
+    SourceDoc(
+        "Projection",
+        BASE / "deepseek-v4-megamoe-rubin-projection.md",
+        "Rubin Projection",
+        "Cross-stage Rubin opportunities, EP scaling, protocol challenges, and validation plan.",
+    ),
 ]
 
 
@@ -124,6 +130,11 @@ CORE_DOCS = [
 
 
 HARDWARE_DOCS = [
+    ExternalDoc(
+        "NVIDIA GPU Generations",
+        HARDWARE_SITE + "nvidia-gpu-generations",
+        "Blackwell/Rubin specs, execution primitives, interconnect, and scaling caveats.",
+    ),
     ExternalDoc(
         "Symmetric Memory",
         HARDWARE_SITE + "cuda-symmetric-memory",

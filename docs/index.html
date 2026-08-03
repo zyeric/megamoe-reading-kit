@@ -141,6 +141,10 @@ footer { color: var(--muted); font-size: 13px; padding: 28px 0 44px; }
         <strong>Glossary</strong>
         <span>Layer-aware definitions for terms like wave, ring block, TMA, and TMEM.</span>
       </a>
+      <a class="item" href="training-systems/deepseek-v4-megamoe-notes.html#source-rubin-projection">
+        <strong>Rubin Projection</strong>
+        <span>EP scaling, descriptor updates, counted writes, bottleneck migration, and port validation.</span>
+      </a>
     </div>
   </section>
 
@@ -157,6 +161,7 @@ footer { color: var(--muted); font-size: 13px; padding: 28px 0 44px; }
           <tr><td>5</td><td><a href="training-systems/deepseek-v4-megamoe-notes.html#source-runtime-protocol">Runtime protocol</a> and <a href="training-systems/deepseek-v4-megamoe-notes.html#source-scheduling">scheduling</a></td><td>Separate cross-stage state from scheduling policy.</td></tr>
           <tr><td>6</td><td><a href="training-systems/deepseek-v4-megamoe-notes.html#source-dispatch">Dispatch</a>, <a href="training-systems/deepseek-v4-megamoe-notes.html#source-quantization">quantization</a>, <a href="training-systems/deepseek-v4-megamoe-notes.html#source-activation">activation</a>, <a href="training-systems/deepseek-v4-megamoe-notes.html#source-gemm">GEMM</a>, and <a href="training-systems/deepseek-v4-megamoe-notes.html#source-combine">combine</a> notes</td><td>Read concrete stage mechanics in execution order.</td></tr>
           <tr><td>7</td><td><a href="training-systems/deepseek-v4-megamoe-notes.html#source-claims-index">Claims index</a></td><td>Check what is solid and what remains open.</td></tr>
+          <tr><td>8</td><td><a href="training-systems/deepseek-v4-megamoe-notes.html#source-rubin-projection">Rubin projection</a></td><td>Project the known SM100 protocol without turning hypotheses into implementation facts.</td></tr>
         </tbody>
       </table>
     </div>
@@ -168,7 +173,8 @@ footer { color: var(--muted); font-size: 13px; padding: 28px 0 44px; }
     MegaMoE forward path. Training backward, private V4 production paths,
     SM90 variants, and cross-node RDMA behavior remain separate revalidation
     tasks unless the <a href="training-systems/deepseek-v4-megamoe-notes.html#source-claims-index">claims index</a>
-    says otherwise.</p>
+    says otherwise. The Rubin page is an architecture projection, not evidence
+    of an implemented or measured Rubin MegaMoE path.</p>
   </section>
 </main>
 

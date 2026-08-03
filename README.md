@@ -34,6 +34,9 @@ https://zyeric.github.io/megamoe-reading-kit/
   ledger.
 - `docs/training-systems/deepseek-v4-megamoe-glossary.md` - layer-aware
   terminology.
+- `docs/training-systems/deepseek-v4-megamoe-rubin-projection.md` - Rubin
+  opportunity/challenge map, including the corrected EP load model and
+  port-validation checklist.
 
 ## Repository Layout
 

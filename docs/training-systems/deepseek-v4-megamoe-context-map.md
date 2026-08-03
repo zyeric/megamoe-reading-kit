@@ -23,6 +23,8 @@ Related notes:
   - code-backed claims, inference, and open questions.
 - [`deepseek-v4-megamoe-source-snapshot.md`](deepseek-v4-megamoe-source-snapshot.md)
   - paper / repo / source-file snapshot.
+- [`deepseek-v4-megamoe-rubin-projection.md`](deepseek-v4-megamoe-rubin-projection.md)
+  - cross-stage architecture projection and validation plan.
 
 ## Purpose
 
@@ -59,6 +61,7 @@ For future tasks about MegaMoE:
 | Which file owns a concept | this file | `deepseek-v4-megamoe-glossary.md` | owner note, layer |
 | Whether a claim is solid | `deepseek-v4-megamoe-claims-index.md` | owner note, source snapshot | evidence level |
 | Which code / paper version was used | `deepseek-v4-megamoe-source-snapshot.md` | owner note code anchors | snapshot, revalidation |
+| How Rubin could change the fused path | `deepseek-v4-megamoe-rubin-projection.md` | owner stage notes, GPU generation notes, claims index | EP scaling, descriptor update, counted writes, NVLink 6 |
 | Dispatch / token movement | `deepseek-v4-megamoe-runtime-protocol.md` | `deepseek-v4-megamoe-dispatch.md`, `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-symmetric-memory` | symmetric buffer, pool, ring, pull |
 | Wave scheduling | `deepseek-v4-megamoe-scheduling.md` | `deepseek-v4-megamoe-runtime-protocol.md`, `https://zyeric.github.io/gpu-hardware-notes/notes.html#source-cuda-kernel-patterns` | wave, pool block, ring block |
 | FP8 / FP4 quantization | `deepseek-v4-megamoe-quantization.md` | `deepseek-v4-megamoe-gemm.md`, `deepseek-v4-megamoe-activation.md` | E4M3, E2M1, UE8M0, SFA/SFB |
@@ -78,6 +81,7 @@ For future tasks about MegaMoE:
 | `deepseek-v4-megamoe-glossary.md` | term definitions and layer mapping | proof of claims |
 | `deepseek-v4-megamoe-claims-index.md` | claim status, evidence level, open questions | complete code walkthrough |
 | `deepseek-v4-megamoe-source-snapshot.md` | external source provenance and revalidation checklist | mechanism explanation |
+| `deepseek-v4-megamoe-rubin-projection.md` | cross-stage Rubin mapping, corrected EP scaling model, and port-validation questions | generic Rubin specs or claims about an implemented Rubin kernel |
 | `deepseek-v4-moe-megakernel.md` | model-to-kernel lowering map and research framing | detailed stage mechanics |
 | `deepseek-v4-megamoe-runtime-protocol.md` | symmetric buffer, pool, ring, counters, metadata, barriers | dispatch source-rank order or GEMM internals |
 | `deepseek-v4-megamoe-scheduling.md` | waves, persistent workers, bubbles, scheduling units | symmetric-memory transport or quantization |
@@ -121,7 +125,8 @@ When adding or revising MegaMoE notes:
 5. If the term is likely to be confused later, add or update it in
    [`deepseek-v4-megamoe-glossary.md`](deepseek-v4-megamoe-glossary.md).
 6. Regenerate [`deepseek-v4-megamoe-notes.html`](deepseek-v4-megamoe-notes.html)
-   with `python3 repo_reading/training-systems/render_megamoe_notes.py`.
+   with `python3 docs/training-systems/render_megamoe_notes.py` from the
+   repository root.
 
 ## Public Artifact Map
 

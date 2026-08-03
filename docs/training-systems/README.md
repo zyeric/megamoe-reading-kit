@@ -28,6 +28,9 @@ Current notes:
   code-backed claims, paper-backed claims, inference, and open questions.
 - `deepseek-v4-megamoe-source-snapshot.md` - source provenance and revalidation
   checklist for paper paths, DeepGEMM ref, and code files.
+- `deepseek-v4-megamoe-rubin-projection.md` - hardware-backed projection of
+  Rubin opportunities and challenges across EP scaling, dispatch, GEMM,
+  activation, remote write-back, combine readiness, and cross-node boundaries.
 - `deepseek-v4-moe-megakernel.md` - focused DeepSeek-V4 reading plan for the
   fused MoE megakernel, communication overlap, and deterministic MoE training
   contract.

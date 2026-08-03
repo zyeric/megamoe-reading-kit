@@ -23,6 +23,8 @@ Related notes:
   layer-aware term definitions.
 - [`deepseek-v4-megamoe-claims-index.md`](deepseek-v4-megamoe-claims-index.md)
   - evidence levels and open questions.
+- [`deepseek-v4-megamoe-rubin-projection.md`](deepseek-v4-megamoe-rubin-projection.md)
+  - architecture projection after the current SM100 path is understood.
 
 ## Purpose
 
@@ -38,6 +40,7 @@ shallow to deep before jumping into code-backed details.
 | Talk prep | 1 hour | this guide, `deepseek-v4-megamoe-talk.html`, claims index |
 | Code reading | half day | context map, source snapshot, runtime protocol, scheduling, then stage notes |
 | Deep dive | multi-day | all source notes plus hardware appendices and upstream code revalidation |
+| Rubin port projection | 30 minutes | current-path summary, Rubin projection, then claims index |
 
 ## One-Sentence Thesis
 
@@ -216,3 +219,8 @@ kernel:
    pipeline assumptions.
 5. Check whether cross-node EP uses DeepEP / RDMA outside this fused kernel
    boundary.
+
+Use the [Rubin projection](deepseek-v4-megamoe-rubin-projection.md) for the
+current opportunity/challenge map. It keeps hardware facts separate from
+proposed protocol changes and records why EP degree alone does not change mean
+routes per expert.
